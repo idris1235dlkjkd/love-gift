@@ -1,0 +1,475 @@
+/* ============================================ */
+/* 🌌 إعدادات عامة                              */
+/* ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Tahoma', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ============================================ */
+/* ⭐ شاشة البداية السوداء مع النجوم             */
+/* ============================================ */
+#introScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1.5s ease;
+}
+
+#introScreen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* النجوم المتحركة */
+#stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* محتوى الشاشة الافتتاحية */
+.intro-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+}
+
+.name-display {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.6), 0 0 60px rgba(255, 107, 157, 0.3);
+    margin-bottom: 1rem;
+    min-height: 6rem;
+    direction: ltr;
+}
+
+/* تأثير الكتابة */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-left: 3px solid #ff6b9d;
+    animation: typing 2.5s steps(20) forwards, blink 0.8s step-end infinite;
+    width: 0;
+    display: inline-block;
+    font-size: inherit;
+}
+
+.sub-title {
+    font-size: 1.3rem;
+    color: #ffb3c6;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease 2.5s forwards;
+}
+
+.btn-start {
+    padding: 1rem 3rem;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff6b9d, #ff2d75);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.4);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease 3s forwards;
+}
+
+.btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 107, 157, 0.7);
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================ */
+/* 📱 المحتوى الرئيسي                           */
+/* ============================================ */
+#mainContent {
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* الأقسام العامة */
+section {
+    margin-bottom: 3.5rem;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #ff6b9d;
+    margin-bottom: 1rem;
+}
+
+/* ============================================ */
+/* 💖 قسم الترحيب                               */
+/* ============================================ */
+.hero-section h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+}
+
+.hero-message {
+    font-size: 1.2rem;
+    color: #ddd;
+    line-height: 1.8;
+}
+
+/* ============================================ */
+/* ⏳ عداد الوقت                                */
+/* ============================================ */
+.counter-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.counter {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    color: #ffb3c6;
+}
+
+.counter span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    display: block;
+    min-width: 60px;
+}
+
+/* ============================================ */
+/* 💌 رسالة طويلة                               */
+/* ============================================ */
+.message-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 107, 157, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.long-message {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #eee;
+    text-align: justify;
+}
+
+/* ============================================ */
+/* 🖼️ صورة بإطار متوهج                        */
+/* ============================================ */
+.photo-section {
+    display: flex;
+    justify-content: center;
+}
+
+.glow-frame {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(135deg, #ff6b9d, #ff2d75, #ff6b9d);
+    background-size: 300% 300%;
+    animation: glowPulse 3s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(255, 107, 157, 0.4);
+    transition: transform 0.5s;
+}
+
+.glow-frame:hover {
+    transform: scale(1.05);
+}
+
+@keyframes glowPulse {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.glow-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.glow-frame:hover img {
+    transform: scale(1.08);
+}
+
+/* ============================================ */
+/* 🎵 زر الموسيقى                              */
+/* ============================================ */
+.music-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    border: 2px solid #ff6b9d;
+    border-radius: 50px;
+    background: transparent;
+    color: #ff6b9d;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.music-btn:hover {
+    background: #ff6b9d;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.4);
+}
+
+.music-btn.playing {
+    background: #ff6b9d;
+    color: #fff;
+}
+
+/* ============================================ */
+/* 🌹 زر المفاجأة                               */
+/* ============================================ */
+.surprise-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff6b9d, #c0392b);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+}
+
+.surprise-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 107, 157, 0.6);
+}
+
+/* ============================================ */
+/* 💌 الظرف                                    */
+/* ============================================ */
+.envelope-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.envelope {
+    width: 200px;
+    height: 140px;
+    background: #ff6b9d;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+    transition: transform 0.5s;
+    margin-bottom: 2rem;
+}
+
+.envelope:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #e85a8a;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: transform 0.8s ease;
+    transform-origin: top;
+    border-radius: 10px 10px 0 0;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background: #ff6b9d;
+    border-radius: 0 0 10px 10px;
+}
+
+/* الرسالة السرية */
+.secret-message {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 500px;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    animation: fadeInUp 0.8s ease;
+}
+
+.secret-message h2 {
+    color: #ff6b9d;
+}
+
+.secret-message p {
+    line-height: 2;
+    color: #eee;
+}
+
+/* ============================================ */
+/* 🎆 الألعاب النارية النهائية                 */
+/* ============================================ */
+.finale-section {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fireworks-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a0a1a, #000);
+}
+
+.fireworks-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.final-message {
+    position: relative;
+    z-index: 10;
+    font-size: 2.5rem;
+    color: #ff6b9d;
+    text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 80px rgba(255, 107, 157, 0.4);
+    text-align: center;
+    padding: 1rem;
+    animation: glowPulseText 2s ease-in-out infinite;
+}
+
+@keyframes glowPulseText {
+    0%, 100% { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8); }
+    50% { text-shadow: 0 0 80px rgba(255, 107, 157, 1), 0 0 120px rgba(255, 107, 157, 0.6); }
+}
+
+/* ============================================ */
+/* 📱 تصميم متجاوب                             */
+/* ============================================ */
+@media (max-width: 600px) {
+    .name-display {
+        font-size: 2.8rem;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .counter {
+        gap: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .counter span {
+        font-size: 1.8rem;
+        min-width: 40px;
+    }
+    
+    .glow-frame {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .final-message {
+        font-size: 1.6rem;
+    }
+    
+    .envelope {
+        width: 150px;
+        height: 105px;
+    }
+}
+
+@media (max-width: 400px) {
+    .name-display {
+        font-size: 2rem;
+    }
+    
+    .btn-start {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .counter span {
+        font-size: 1.4rem;
+    }
+}
